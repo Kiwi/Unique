@@ -1,14 +1,11 @@
-cabal-version: >=1.10
+cabal-version: 2.0
 name:          Unique
 version:       0.4.7.7
 license:       BSD3
 license-file:  LICENSE
 maintainer:    ualinuxcn@gmail.com
 author:        Volodymyr Yashchenko
-tested-with:
-    ghc ==8.10 ghc ==8.8 ghc ==8.6 ghc ==8.4 ghc ==8.2 ghc ==8.0
-    ghc ==7.8 ghc ==7.6 ghc ==7.4
-
+tested-with:   ghc >=7.4 && <8.2.1 || >8.2.1 && <8.12
 synopsis:      It provides the functionality like unix "uniq" utility
 description:
     Library provides the functions to find unique and duplicate elements in the list
@@ -30,10 +27,10 @@ library
     ghc-options:      -Wall
     build-depends:
         base >=4.0 && <=4.15,
-        containers >=0.5.0 && <=0.7,
+        containers >=0.5.0.0 && <=0.7,
         extra >=1.6.2 && <=1.8,
-        hashable >=1.2.6 && <=1.4,
-        unordered-containers >=0.2.8 && <=0.3
+        hashable >= 1.2.6 && <=1.4,
+        unordered-containers >= 0.2.8 && <=0.3
 
 test-suite HspecTest
     type:             exitcode-stdio-1.0
@@ -58,10 +55,11 @@ test-suite HspecTest
     ghc-options:      -Wall
     build-depends:
         base >=4.0 && <5,
+        Unique,
         hspec -any,
-        containers >=0.5.0 && <0.7,
-        QuickCheck >=2.10 && <2.15,
-        Unique -any
+        containers >=0.5.0.0 && <=0.7,
+        QuickCheck    >= 2.10 && <2.15
+--        QuickCheck -any
 
 benchmark Criterion
     type:             exitcode-stdio-1.0
@@ -71,9 +69,10 @@ benchmark Criterion
     ghc-options:      -Wall -rtsopts
     build-depends:
         base >=4.0 && <5,
-        Unique -any,
+        Unique,
         criterion -any,
-        QuickCheck >=2.10 && <2.15,
+--        QuickCheck -any,
+        QuickCheck    >= 2.10 && <2.15,
         quickcheck-instances -any,
         bytestring -any,
         hashable -any
